@@ -1,23 +1,27 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+import About from "./About";
 
 function Header() {
-    const style={
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        margin: '10px'
-    }
+    const loc = useLocation;
+    console.log(loc);
     return (
-        <header style={style}>
-            <div id='logo'>
-                <h2>MY Webstore</h2>
-            </div>
-            <div>
-                <Link className="link" href="#">Home</Link>
-                <Link className="link" href="#">About</Link>
-            </div>
-        </header>
+        <Router>
+            <header>
+                <div id='logo'>
+                    <h2>MY Webstore</h2>
+                </div>
+                <div>
+                    <Link className="link" to="/">Home</Link>
+                    <Link className="link" to="/about">About</Link>
+                </div>
+            </header>
+            <Switch>
+                    <Route path="/about">
+                        <About/>
+                    </Route>
+                </Switch>
+        </Router>
     )
 }
 
