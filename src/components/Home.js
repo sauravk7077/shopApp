@@ -4,7 +4,10 @@ import Item from "./Item";
 function Home() {
     return (
         <div id="home">
-            <Item></Item>
+            <div className="items-container">
+                <Item/>
+                <Item/>
+            </div>
         </div>
     )
 }
