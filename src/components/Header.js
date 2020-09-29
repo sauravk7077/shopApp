@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useLocation } from "react-router-dom";
+import {NavLink, useLocation } from "react-router-dom";
 
 function Header() {
     const loc = useLocation;
@@ -9,10 +9,10 @@ function Header() {
                 <div id='logo'>
                     <h2>MY Webstore</h2>
                 </div>
-                <div>
-                    <Link className="link" to="/">Home</Link>
-                    <Link className="link" to="/about">About</Link>
-                </div>
+                <nav>
+                    <NavLink className="link" to="/" exact>Home</NavLink>
+                    <NavLink className="link" to="/about">About</NavLink>
+                </nav>
             </header>
     )
 }
