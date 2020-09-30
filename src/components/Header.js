@@ -1,9 +1,7 @@
 import React from "react";
-import {NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header() {
-    const loc = useLocation;
-    console.log(loc);
     return (
             <header>
                 <div id='logo'>
