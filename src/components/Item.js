@@ -1,22 +1,26 @@
-import React from "react";
+import React,{useContext} from "react";
 import Fade from "react-reveal/Fade";
+import Button from "./Button";
+import {CartContext} from "../CartContext";
 
 function Item(props) {
+    const cartContext = useContext(CartContext);
+    const {name, price,image, mrp} = props;
     return (
         <Fade big cascade>
             <div className="item">
                 <div className="image">
-                    <img src="img/cam.jpg" alt="Tomato Sauce" loading='lazy'/>
+                    <img src={"./img/"+image} alt="Tomato Sauce" loading='lazy'/>
                 </div>
                 <div className="details">
-                    <div className="head">Tomato Sauce</div>
+                <div className="head">{name}</div>
                     <div >
                         <span>
-                        <p>500$</p>
-                        <p>(MRP - 800$)</p>
+                            <p>{price + "$"}</p>
+                        <p>(MRP - {mrp + "$"})</p>
                         </span>
                     </div>
-                    <button>Buy</button>
+                    <Button value={'Buy'} click={_=>cartContext.addToCart(props)}/>
                 </div>
             </div>
         </Fade>
