@@ -24,7 +24,7 @@ p
 header
   @include flex($j: space-between, $a: center)
   padding: 10px
-  box-shadow: 0 2px 5px 5px darken($bg, 20%)
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05),0 1px 4px rgba(0,0,0,0.05),0 2px 8px rgba(0,0,0,0.05)
   nav
     @include flex()
     
@@ -108,11 +108,14 @@ header
 
 .cartBox
   @include flex($j: center, $d: column)
-  position: fixed
+  position: absolute
   top: 95px
   right: 5px
   z-index: 9
   padding: 10px
+  overflow-y: auto
+  min-width: 300px
+  max-height: 80vh
   box-shadow: 0 0 10px darken($bg, 20%)
   .cartItem
     @include flex($a: center)
@@ -133,4 +136,16 @@ header
   @include flex($a:center)
   width: 200px
   height: 40px
+
+
+
   
+/*
+  -----------------
+    Content
+  -----------------
+  */
+
+
+section
+  margin: 10px

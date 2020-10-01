@@ -4,7 +4,7 @@ import Fade from "react-reveal/Fade";
 
 function Home() {
     return (
-        <div id="home">
+        <section id="home">
             <Fade big cascade>
             <div className="items-container">
                 <Item id="dfl4" name="Tomato Sauce" price={500} mrp={800} image="cam.jpg"/>
@@ -12,7 +12,7 @@ function Home() {
                 
             </div>
             </Fade>
-        </div>
+        </section>
     )
 }
 
