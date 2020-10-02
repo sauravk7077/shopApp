@@ -8,10 +8,42 @@ class CartContextProvider extends React.Component{
         show: false
     }
 
-    addToCart = ob=>{
-        const cartNew = [...this.state.cart , ob];
+    findItem = (arr,id)=> {
+        return arr.find(e=> e.id === id);
+    }
+
+    updateCount = (id,increment) => {
+        const cartItems = this.state.cart;
+        if((this.findItem(cartItems, id).count == 1 && increment < 0))
+            this.removeFromCart(id);
+        else{
+            this.findItem(cartItems, id).count += increment;
+        }
+
         this.setState({
-            cart: cartNew
+            cart: cartItems
+        });
+    }
+
+    addToCart = ob=>{
+        
+        if(this.state.cart.some(el=> el.id === ob.id))
+        {
+            this.updateCount(ob.id, 1);
+        }else{
+            ob = {...ob,count:1};
+            const cartNew = [...this.state.cart , ob];
+            this.setState({
+                cart: cartNew,
+            });
+        }
+    }
+
+    removeFromCart = id=>{
+        const cartItems = this.state.cart.filter(el=> el.id !== id);
+        console.log(cartItems);
+        this.setState({
+            cart: cartItems
         });
     }
 
@@ -19,8 +51,16 @@ class CartContextProvider extends React.Component{
         this.setState(s=>({show: !s.show}))
     }
     render() {
+        const contextObject = {
+            ...this.state,
+            addToCart: this.addToCart,
+            removeFromCart: this.removeFromCart,
+            toggleShow: this.toggleShow,
+            updateCount: this.updateCount,
+            findItem: this.findItem
+        }
         return (
-            <CartContext.Provider value={{...this.state, addToCart: this.addToCart, toggleShow: this.toggleShow}}>
+            <CartContext.Provider value={contextObject}>
                 {this.props.children}
             </CartContext.Provider>
         )

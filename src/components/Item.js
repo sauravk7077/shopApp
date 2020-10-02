@@ -5,7 +5,8 @@ import {CartContext} from "../CartContext";
 
 function Item(props) {
     const cartContext = useContext(CartContext);
-    const {name, price,image, mrp} = props;
+    const {name, price,image,id, mrp} = props;
+    const currentItem = cartContext.findItem(cartContext.cart,id);
     return (
         <Fade big cascade>
             <div className="item">
@@ -17,10 +18,10 @@ function Item(props) {
                     <div >
                         <span>
                             <p>{price + "$"}</p>
-                        <p>(MRP - {mrp + "$"})</p>
+                            <p>(MRP - {mrp + "$"})</p>
                         </span>
                     </div>
-                    <Button value={'Buy'} click={_=>cartContext.addToCart(props)}/>
+                    <Button value={currentItem ? 'Add One More' : 'Buy'} click={_=>cartContext.addToCart(props)}/>
                 </div>
             </div>
         </Fade>

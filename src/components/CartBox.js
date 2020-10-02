@@ -1,8 +1,9 @@
 import React,{useContext} from "react";
 import {CartContext} from "../CartContext";
+import Button from "./Button";
 
 function CartBox() {
-    const {cart, show} = useContext(CartContext);
+    const {cart, show, removeFromCart, updateCount} = useContext(CartContext);
     const items = cart.map(i=>(
         <div className="cartItem" key={i.id}>
             <div className="image">
@@ -12,6 +13,9 @@ function CartBox() {
                 <div>{i.name}</div>
                 <div>{i.price}</div>
                 <div>{i.mrp}</div>
+                <div>Count: {i.count}</div>
+                <Button value="-" click={_=>updateCount(i.id, -1)}/>
+                <Button value="Remove All" click={_=>removeFromCart(i.id)}/>
             </div>
         </div>
     ))
