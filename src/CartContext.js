@@ -14,34 +14,37 @@ class CartContextProvider extends React.Component{
 
     updateCount = (id,increment) => {
         const cartItems = this.state.cart;
-        if((this.findItem(cartItems, id).count == 1 && increment < 0))
+        if(this.findItem(cartItems, id).count == 1 && increment < 0)
+        {
             this.removeFromCart(id);
-        else{
-            this.findItem(cartItems, id).count += increment;
         }
-
-        this.setState({
-            cart: cartItems
-        });
+        else{
+            this.setState({
+                cart: cartItems.map(item=>(
+                    item.id === id ? {
+                        ...item,
+                        count: item.count + increment
+                    }: item
+                ))
+            });
+        }
+            
     }
 
     addToCart = ob=>{
-        
-        if(this.state.cart.some(el=> el.id === ob.id))
-        {
+        if (this.state.cart.some((el) => el.id === ob.id)) {
             this.updateCount(ob.id, 1);
-        }else{
-            ob = {...ob,count:1};
-            const cartNew = [...this.state.cart , ob];
+          } else {
+            ob = { ...ob, count: 1 };
+            const cartNew = [...this.state.cart, ob];
             this.setState({
-                cart: cartNew,
+              cart: cartNew
             });
-        }
+          }
     }
 
     removeFromCart = id=>{
         const cartItems = this.state.cart.filter(el=> el.id !== id);
-        console.log(cartItems);
         this.setState({
             cart: cartItems
         });
@@ -68,3 +71,4 @@ class CartContextProvider extends React.Component{
 }
 
 export default CartContextProvider;
+

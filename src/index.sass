@@ -92,8 +92,12 @@ header
   */
 
 .btn
-  width: 100%
+  padding: 15px
+  @include flex($a:center)
   height: 2.5em
+
+.slim
+  padding: 0
 
 
 
@@ -137,6 +141,16 @@ header
   width: 200px
   height: 40px
 
+
+/*
+  -----------------
+    Orders
+  -----------------
+  */
+
+.orderItem
+    @include flex($a:center)
+    
 
 
   

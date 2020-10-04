@@ -12,6 +12,7 @@ function Header() {
                 <nav>
                     <NavLink className="link" to="/" exact>Home</NavLink>
                     <NavLink className="link" to="/about">About</NavLink>
+                    <NavLink className="link" to="/orders">Orders</NavLink>
                     <button className="link" onClick={toggleShow}>Cart</button>
                 </nav>
             </header>

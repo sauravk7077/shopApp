@@ -1,9 +1,11 @@
 import React,{useContext} from "react";
 import {CartContext} from "../CartContext";
 import Button from "./Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMinus } from '@fortawesome/free-solid-svg-icons'
 
 function CartBox() {
-    const {cart, show, removeFromCart, updateCount} = useContext(CartContext);
+    const {cart, show, removeFromCart, updateCount, toggleShow} = useContext(CartContext);
     const items = cart.map(i=>(
         <div className="cartItem" key={i.id}>
             <div className="image">
@@ -13,15 +15,20 @@ function CartBox() {
                 <div>{i.name}</div>
                 <div>{i.price}</div>
                 <div>{i.mrp}</div>
-                <div>Count: {i.count}</div>
-                <Button value="-" click={_=>updateCount(i.id, -1)}/>
-                <Button value="Remove All" click={_=>removeFromCart(i.id)}/>
+                <div>Quantity: {i.count}</div>
+                <div className="incrementBox">
+                    <Button className="slim" value={
+                        <FontAwesomeIcon icon={faMinus}/>
+                    } click={_=>updateCount(i.id, -1)}/>
+                    <Button className="slim" value={"Remove"} click={_=>removeFromCart(i.id)}/>
+                </div>
+                
             </div>
         </div>
     ))
     const empty = <div className="empty">Your cart is empty</div>
     return (
-        <div className={"cartBox" + (!show?' hidden':'')}>
+        <div className={"cartBox" + (!show?' hidden':'')} tabIndex="1" onBlur={e=>{console.log('hey there')}}>
             {items.length>0 ? items : empty}
         </div>
     )
