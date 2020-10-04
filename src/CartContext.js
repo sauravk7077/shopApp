@@ -12,6 +12,10 @@ class CartContextProvider extends React.Component{
         return arr.find(e=> e.id === id);
     }
 
+    totalAmount = _=>{
+        return this.state.cart.reduce((a,b)=>a.price +b.price);
+    }
+
     updateCount = (id,increment) => {
         const cartItems = this.state.cart;
         if(this.findItem(cartItems, id).count == 1 && increment < 0)
@@ -60,7 +64,8 @@ class CartContextProvider extends React.Component{
             removeFromCart: this.removeFromCart,
             toggleShow: this.toggleShow,
             updateCount: this.updateCount,
-            findItem: this.findItem
+            findItem: this.findItem,
+            totalAmount: this.totalAmount
         }
         return (
             <CartContext.Provider value={contextObject}>

@@ -1,11 +1,13 @@
 import React,{useContext} from "react";
 import Fade from "react-reveal/Fade";
 import Button from "./Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import {CartContext} from "../CartContext";
 
 function OrderItem(props) {
-    const cartContext = useContext(CartContext);
-    const {name, price,image,id, mrp} = props.ob;
+    const {updateCount} = useContext(CartContext);
+    const {name, price,image,id, mrp,count} = props.ob;
     console.log(props);
     return (
         <Fade big cascade>
@@ -14,9 +16,19 @@ function OrderItem(props) {
                     <img src={"./img/"+image} alt="Tomato Sauce" loading='lazy'/>
                 </div>
                 <div className="details">
-                <div className="head">{name}</div>
-                    <div >
-                            <p>{price + "$"}</p>
+                    <div className="name">{name}</div>
+                    <div >{price + "$"}</div>
+                    <div>Quantity: {count}</div>
+                    <div className="incrementBox">
+                        <Button
+                        className="slim"
+                        value={<FontAwesomeIcon icon={faPlusSquare}/>}
+                        click={_=>updateCount(id, 1)}
+                        />
+                        <Button className="slim" value={
+                            <FontAwesomeIcon icon={faMinusSquare}/>
+                        } click={_=>updateCount(id, -1)}
+                        />
                     </div>
                 </div>
             </div>

@@ -11,9 +11,9 @@ $bg: #fff
 
 body
   background: $bg
-  color: $accent
   overflow-x: hidden
   margin: 0
+  color: lighten($accent, 20%)
 
 a
   text-decoration: none
@@ -93,11 +93,20 @@ header
 
 .btn
   padding: 15px
+  cursor: pointer
   @include flex($a:center)
   height: 2.5em
 
 .slim
   padding: 0
+  font-size: 2rem
+  background: transparent
+  border: none
+  color: $main
+  height: auto
+  &:hover
+    color: darken($main, 5%)
+
 
 
 
@@ -125,8 +134,8 @@ header
     @include flex($a: center)
     margin: 5px
     .image
-      width: 60px
-      height: 50px
+      width: 100px
+      height: 100px
       img
         width: 100%
     *
@@ -141,6 +150,10 @@ header
   width: 200px
   height: 40px
 
+.incrementBox
+  @include flex($j:space-evenly,$a:center)
+  
+
 
 /*
   -----------------
@@ -148,9 +161,30 @@ header
   -----------------
   */
 
+.ordersPage
+  @include flex($j: space-between)
+  
+
+.ordersContainer
+  flex-basis: 60%
+  @include flex($a:flex-start, $d:column)
+  
+
 .orderItem
-    @include flex($a:center)
-    
+    @include flex($j:space-evenly ,$a:center)
+    flex-basis: 100%
+    .image
+      flex-basis: 100px
+      img
+        max-width: 100%
+    .details
+      font-size: 0.9em
+      text-align: center
+      @include flex($j: space-evenly, $a: center)
+      color: lighten($accent, 20%)
+      flex: 0.7
+      > *
+        flex-basis: 100px
 
 
   
@@ -163,3 +197,7 @@ header
 
 section
   margin: 10px
+
+.name
+  color: $accent
+  font-size: 1.2em
