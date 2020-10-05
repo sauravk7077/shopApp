@@ -1,11 +1,24 @@
-import React,{useContext} from "react";
+import React,{useContext, useEffect, useRef} from "react";
 import {CartContext} from "../CartContext";
 import Button from "./Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import { faMinus, faPlus} from '@fortawesome/free-solid-svg-icons'
 
 function CartBox() {
     const {cart, show, removeFromCart, updateCount, toggleShow} = useContext(CartContext);
+    const cartBox = useRef();
+    const handleClick = (e)=>{
+        if(!cartBox.current.contains(e.target) && show){
+            toggleShow()
+        }
+    }
+    
+    useEffect(()=>{
+        document.addEventListener("mousedown", handleClick);  // return function to be called when unmounted
+        return () => {
+          document.removeEventListener("mousedown", handleClick);
+        };
+    })
     const items = cart.map(i=>(
         <div className="cartItem" key={i.id}>
             <div className="image">
@@ -13,19 +26,18 @@ function CartBox() {
             </div>
             <div>
                 <div className="name">{i.name}</div>
-                <div>{i.price}</div>
-                <div>{i.mrp}</div>
+                <div>Price - ${i.price}</div>
                 <div>Quantity: {i.count}</div>
                 <div className="incrementBox">
-                    <Button
-                     className="slim"
-                     value={<FontAwesomeIcon icon={faPlusSquare}/>}
-                     click={_=>updateCount(i.id, 1)}
-                    />
-                    <Button className="slim" value={
-                        <FontAwesomeIcon icon={faMinusSquare}/>
-                    } click={_=>updateCount(i.id, -1)}
-                    />
+                        <Button
+                        className="slim"
+                        value={<FontAwesomeIcon icon={faPlus}/>}
+                        click={_=>updateCount(i.id, 1)}
+                        />
+                        <Button className="slim" value={
+                            <FontAwesomeIcon icon={faMinus}/>
+                        } click={_=>updateCount(i.id, -1)}
+                        />
                 </div>
                 
             </div>
@@ -33,7 +45,7 @@ function CartBox() {
     ));
     const empty = <div className="empty">Your cart is empty</div>
     return (
-        <div className={"cartBox" + (!show?' hidden':'')} tabIndex="1" onBlur={e=>{console.log('hey there')}}>
+        <div ref={cartBox} className={"cartBox" + (!show?' hidden':'')} tabIndex="1">
             {items.length>0 ? items : empty}
         </div>
     )

@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <CartContext>
         <BrowserRouter>
-          <div className="App">
+          <div ref={'node'} className="App">
             <Header/>
             <CartBox/>
             <Route path='/' component={Home} exact/>

@@ -1,19 +1,38 @@
 $accent: #000
 $main: #F53B04
 $bg: #fff
+$headFont: 'Miriam Libre', sans-serif
+$body: 'Roboto', sans-serif
+
+@import url('https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&family=Roboto&display=swap')
 
 @mixin flex($j:center, $a:flex-start, $d: row, $wrap: nowrap)
   display: flex
   align-items: $a
   justify-content: $j
   flex-flow: $d $wrap
+  
+html, body, #root, .App
+  width: 100vw
+  height: 100vh
+  margin: 0
+  * 
+    transition: all 200ms ease-in-out
 
+.App
+  @include flex($j: flex-start, $a: center, $d: column)
+  
+div,button, input, a, p, section, img
+  &:focus
+    outline: 2px dashed $main
+    box-shadow: 0 0 10px $main
 
 body
   background: $bg
   overflow-x: hidden
   margin: 0
-  color: lighten($accent, 20%)
+  color: lighten($accent, 30%)
+  font-family: $body
 
 a
   text-decoration: none
@@ -21,9 +40,14 @@ a
 p
   display: inline
 
+body
+  &:focus
+    outline: 1px solid $accent
+
 header
   @include flex($j: space-between, $a: center)
-  padding: 10px
+  width: 80vw
+  padding: 0 10px
   box-shadow: 0 1px 2px rgba(0,0,0,0.05),0 1px 4px rgba(0,0,0,0.05),0 2px 8px rgba(0,0,0,0.05)
   nav
     @include flex()
@@ -50,6 +74,7 @@ header
   color: $bg
 
 .items-container
+  height: 100%
   @include flex(center, center)
   
 
@@ -94,18 +119,31 @@ header
 .btn
   padding: 15px
   cursor: pointer
+  outline: none
+  border: none
+  background: $main
+  color: $bg
+  font-family: $body
   @include flex($a:center)
   height: 2.5em
+  border-radius: 5%
+  &:hover
+    background: darken($main, 5%)
+  
 
 .slim
   padding: 0
-  font-size: 2rem
+  font-size: 0.8rem
+  width: 2rem
+  height: 2.5rem
   background: transparent
   border: none
   color: $main
+  border: 1px solid $main
   height: auto
   &:hover
-    color: darken($main, 5%)
+    background: $main
+    color: $bg
 
 
 
@@ -122,12 +160,14 @@ header
 .cartBox
   @include flex($j: center, $d: column)
   position: absolute
+  background: $bg
   top: 95px
-  right: 5px
-  z-index: 9
+  right: 9.4vw
+  z-index: 999
   padding: 10px
   overflow-y: auto
   min-width: 300px
+  min-height: 40px
   max-height: 80vh
   box-shadow: 0 0 10px darken($bg, 20%)
   .cartItem
@@ -147,8 +187,7 @@ header
 
 .empty
   @include flex($a:center)
-  width: 200px
-  height: 40px
+  
 
 .incrementBox
   @include flex($j:space-evenly,$a:center)
@@ -162,7 +201,12 @@ header
   */
 
 .ordersPage
-  @include flex($j: space-between)
+  @include flex($j: space-evenly, $a: center)
+  margin: 10px auto
+  .checkoutBox
+    min-width: 150px
+    padding: 40px
+    border: 1px solid lighten($accent, 20%)
   
 
 .ordersContainer
@@ -172,6 +216,7 @@ header
 
 .orderItem
     @include flex($j:space-evenly ,$a:center)
+    margin: 10px auto
     flex-basis: 100%
     .image
       flex-basis: 100px
@@ -196,8 +241,22 @@ header
 
 
 section
+  @include flex($a:center, $d: column)
+  flex-grow: 1
   margin: 10px
+  text-align: center
+
+h1,h2,h3,h4,h5,h6
+  color: $accent
+  font-family: $headFont
 
 .name
   color: $accent
   font-size: 1.2em
+
+
+#home
+  height: calc(100vh - 90px)
+
+#home, #about
+  justify-content: flex-start

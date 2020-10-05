@@ -2,7 +2,7 @@ import React,{useContext} from "react";
 import Fade from "react-reveal/Fade";
 import Button from "./Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import {CartContext} from "../CartContext";
 
 function OrderItem(props) {
@@ -22,11 +22,11 @@ function OrderItem(props) {
                     <div className="incrementBox">
                         <Button
                         className="slim"
-                        value={<FontAwesomeIcon icon={faPlusSquare}/>}
+                        value={<FontAwesomeIcon icon={faPlus}/>}
                         click={_=>updateCount(id, 1)}
                         />
                         <Button className="slim" value={
-                            <FontAwesomeIcon icon={faMinusSquare}/>
+                            <FontAwesomeIcon icon={faMinus}/>
                         } click={_=>updateCount(id, -1)}
                         />
                     </div>

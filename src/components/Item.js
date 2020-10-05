@@ -16,11 +16,11 @@ function Item(props) {
                     <img src={"./img/"+image} alt="Tomato Sauce" loading='lazy'/>
                 </div>
                 <div className="details">
-                <div className="head">{name}</div>
+                <div className="name">{name}</div>
                     <div >
                         <span>
                             <p>{price + "$"}</p>
-                            <p>(MRP - {mrp + "$"})</p>
+                            <p> (MRP - {mrp + "$"}) </p>
                         </span>
                     </div>
                     <Button value={currentItem ? "Add More" : 'Add To Cart'} click={_=>cartContext.addToCart(props)}/>

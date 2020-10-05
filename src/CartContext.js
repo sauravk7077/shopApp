@@ -3,6 +3,7 @@ import React, {createContext} from "react";
 export const CartContext = createContext();
 
 class CartContextProvider extends React.Component{
+
     state= {
         cart: [],
         show: false
