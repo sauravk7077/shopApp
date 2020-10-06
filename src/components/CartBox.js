@@ -22,7 +22,7 @@ function CartBox() {
     const items = cart.map(i=>(
         <div className="cartItem" key={i.id}>
             <div className="image">
-                <img src={"./shopApp/img/" + i.image} alt={i.name}/>
+                <img src={"/shopApp/img/" + i.image} alt={i.name}/>
             </div>
             <div>
                 <div className="name">{i.name}</div>
