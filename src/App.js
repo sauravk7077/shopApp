@@ -16,9 +16,9 @@ class App extends React.Component {
           <div ref={'node'} className="App">
             <Header/>
             <CartBox/>
-            <Route path='/' component={Home} exact/>
-            <Route path="/about" component={About}/>
-            <Route path="/orders" component={Orders}/>
+            <Route path='/shopApp/' component={Home} exact/>
+            <Route path="/shopApp/about" component={About}/>
+            <Route path="/shopApp/orders" component={Orders}/>
           </div>
         </BrowserRouter>
       </CartContext>

@@ -11,7 +11,7 @@ function Item(props) {
         <Fade big>
             <div className="item">
                 <div className="image">
-                    <img src={"./img/"+image} alt="Tomato Sauce" loading='lazy'/>
+                    <img src={"./shopApp/img/"+image} alt="Tomato Sauce" loading='lazy'/>
                 </div>
                 <div className="details">
                 <div className="name">{name}</div>

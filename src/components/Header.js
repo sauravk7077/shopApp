@@ -12,9 +12,9 @@ function Header() {
                     <h2>Shop App</h2>
                 </div>
                 <nav>
-                    <NavLink className="link" to="/" exact>Home</NavLink>
-                    <NavLink className="link" to="/about">About</NavLink>
-                    <NavLink className="link" to="/orders">Orders</NavLink>
+                    <NavLink className="link" to="/shopApp/" exact>Home</NavLink>
+                    <NavLink className="link" to="/shopApp/about">About</NavLink>
+                    <NavLink className="link" to="/shopApp/orders">Orders</NavLink>
                     <button className="link" id="cartBtn" onClick={toggleShow}>
                         <FontAwesomeIcon icon={faShoppingCart}/>
                         &nbsp;Cart

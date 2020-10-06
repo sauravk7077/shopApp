@@ -13,7 +13,7 @@ function OrderItem(props) {
         <Fade big cascade>
             <div className="orderItem">
                 <div className="image">
-                    <img src={"./img/"+image} alt="Tomato Sauce" loading='lazy'/>
+                    <img src={"./shopApp/img/"+image} alt="Tomato Sauce" loading='lazy'/>
                 </div>
                 <div className="details">
                     <div className="name">{name}</div>
