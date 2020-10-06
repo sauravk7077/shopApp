@@ -2,7 +2,7 @@ import React,{useContext, useEffect, useRef} from "react";
 import {CartContext} from "../CartContext";
 import Button from "./Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMinus, faPlus} from '@fortawesome/free-solid-svg-icons'
+import { faMinus, faPlus, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 function CartBox() {
     const {cart, show, removeFromCart, updateCount, toggleShow} = useContext(CartContext);
@@ -43,10 +43,15 @@ function CartBox() {
             </div>
         </div>
     ));
-    const empty = <div className="empty">Your cart is empty</div>
+    const empty = <div className="empty">Your cart is empty.</div>
     return (
         <div ref={cartBox} className={"cartBox" + (!show?' hidden':'')} tabIndex="1">
-            {items.length>0 ? items : empty}
+            <div className="cartTop">
+                <h3>Cart</h3>
+            </div>
+            {items.length>0 ? items.concat(<a href="./orders"><Button value={"Buy"}/></a>) : empty}
+            <Button className="close subtle" click={toggleShow} value={<FontAwesomeIcon icon={faTimes}/>}/>
+            
         </div>
     )
 }

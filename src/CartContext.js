@@ -1,12 +1,21 @@
 import React, {createContext} from "react";
+import lS from "./lS";
 
 export const CartContext = createContext();
 
-class CartContextProvider extends React.Component{
+const lStorage = new lS();
 
-    state= {
-        cart: [],
-        show: false
+class CartContextProvider extends React.Component{
+    constructor() {
+        super();
+        this.state= {
+            cart: lStorage.get()?lStorage.get(): [],
+            show: false
+        }
+        if(!lStorage.get())
+            lStorage.set(this.state.cart);
+        else
+            this.setState({cart: lStorage.get()})
     }
 
     findItem = (arr,id)=> {
@@ -31,9 +40,13 @@ class CartContextProvider extends React.Component{
                         count: item.count + increment
                     }: item
                 ))
-            });
+            }, this.updateLocalStorage);
         }
             
+    }
+
+    updateLocalStorage = ()=> {
+        lStorage.set(this.state.cart);
     }
 
     addToCart = ob=>{
@@ -44,8 +57,9 @@ class CartContextProvider extends React.Component{
             const cartNew = [...this.state.cart, ob];
             this.setState({
               cart: cartNew
-            });
+            }, this.updateLocalStorage);
           }
+
     }
 
     removeFromCart = id=>{
@@ -53,6 +67,7 @@ class CartContextProvider extends React.Component{
         this.setState({
             cart: cartItems
         });
+        this.updateLocalStorage();
     }
 
     toggleShow = _=>{
