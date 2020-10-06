@@ -22,13 +22,9 @@ class CartContextProvider extends React.Component{
         return arr.find(e=> e.id === id);
     }
 
-    totalAmount = _=>{
-        return this.state.cart.reduce((a,b)=>a.price +b.price);
-    }
-
     updateCount = (id,increment) => {
         const cartItems = this.state.cart;
-        if(this.findItem(cartItems, id).count == 1 && increment < 0)
+        if(this.findItem(cartItems, id).count === 1 && increment < 0)
         {
             this.removeFromCart(id);
         }
@@ -61,6 +57,10 @@ class CartContextProvider extends React.Component{
           }
 
     }
+    clearCart = _=>{
+        this.setState({cart: []});
+        this.updateLocalStorage();
+    }
 
     removeFromCart = id=>{
         const cartItems = this.state.cart.filter(el=> el.id !== id);
@@ -81,7 +81,7 @@ class CartContextProvider extends React.Component{
             toggleShow: this.toggleShow,
             updateCount: this.updateCount,
             findItem: this.findItem,
-            totalAmount: this.totalAmount
+            clearCart: this.clearCart
         }
         return (
             <CartContext.Provider value={contextObject}>

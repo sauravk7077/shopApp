@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 function CartBox() {
-    const {cart, show, removeFromCart, updateCount, toggleShow} = useContext(CartContext);
+    const {cart, show, updateCount, toggleShow} = useContext(CartContext);
     const cartBox = useRef();
     const handleClick = (e)=>{
         if(!cartBox.current.contains(e.target) && show){

@@ -9,10 +9,15 @@ function About() {
             <Fade>
                 <h2>About</h2>
                 <p>This is a project by Saurav Kumar. To check out the source code of this project, click the button below.</p>
-                <div><a className="btn" href="https://github.com/sauravk7077/shopapp">
-                    <FontAwesomeIcon icon={faGithub}/>
-                    &nbsp;Visit GitHub Page
-                </a></div>
+                <h4>Credits</h4> 
+                <p>All the photos used in this project are from pexels.</p>
+                <p>Photo by Tom Swinnen from Pexels</p>
+                <div>
+                    <a className="btn" href="https://github.com/sauravk7077/shopapp">
+                        <FontAwesomeIcon icon={faGithub}/>
+                        &nbsp;Visit GitHub Page
+                    </a>
+                </div>
             </Fade>
         </section>
     )

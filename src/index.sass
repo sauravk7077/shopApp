@@ -1,4 +1,4 @@
-$accent: #000
+$accent: #161616
 $main: #F53B04
 $danger: #F32013
 $bg: #fff
@@ -82,7 +82,7 @@ header
 .item
   @include flex(center, center)
   width: 250px
-  margin: 5px
+  margin: 20px
   box-sizing: border-box
   padding: 10px
   flex-direction: column
@@ -100,6 +100,9 @@ header
 .details
   width: 200px
   @include flex(center, flex-start)
+  span
+    font-size: 0.8em
+    padding-left: 10px
   
   flex-direction: column
   box-sizing: border-box
@@ -126,7 +129,7 @@ header
   color: $bg
   font-family: $body
   @include flex($a:center)
-  height: 2.5em
+  height: 2.2em
   border-radius: 5%
   &:hover
     background: darken($main, 5%)
@@ -174,6 +177,7 @@ header
   right: 9.4vw
   z-index: 999
   padding: 10px
+  padding-bottom: 20px
   overflow-y: auto
   min-width: 300px
   min-height: 40px
@@ -185,11 +189,7 @@ header
     margin-top: auto
     margin-bottom: auto
   .cartItem
-    justify-content: space-between
-    .image
-      align-self: flex-start
-  .cartItem
-    @include flex($a: center)
+    @include flex($j: space-between, $a: center)
     margin: 5px
     .image
       width: 100px
@@ -199,8 +199,8 @@ header
     *
       margin: 5px
 
-.cartBox.hidden
-  display: none
+.hidden
+  display: none !important
 
 
   
@@ -221,13 +221,17 @@ header
   -----------------
   */
 
+#orders
+  justify-content: flex-start
+
 .ordersPage
   @include flex($j: space-evenly, $a: center)
+  width: 80%
   margin: 10px auto
   .checkoutBox
     min-width: 150px
     padding: 40px
-    border: 1px solid lighten($accent, 20%)
+    border: 1px solid lighten($accent, 50%)
   
 
 .ordersContainer
@@ -244,7 +248,8 @@ header
       img
         max-width: 100%
     .details
-      font-size: 0.9em
+      span
+        font-size: 0.7em
       text-align: center
       @include flex($j: space-evenly, $a: center)
       color: lighten($accent, 20%)
@@ -263,6 +268,8 @@ header
 
 section
   @include flex($a:center, $d: column)
+  width: 98%
+  margin:auto
   flex-grow: 1
   margin: 10px
   text-align: center
@@ -284,6 +291,23 @@ h1,h2,h3,h4,h5,h6
 
 
 /*
+  ------------------
+    Check Out
+  ------------------
+  */
+
+.checkOut
+  position: absolute
+  @include flex($a: center, $d:column)
+  background: $bg
+  width: 500px;
+  height: 250px;
+  box-shadow: 0 0 5px darken($bg, 20%)
+  top: calc(50vh - 125px)
+  left: calc(50vw - 250px)
+  
+
+/*
   --------------------
   --------------------
     Mobile Styles
@@ -300,12 +324,14 @@ h1,h2,h3,h4,h5,h6
     left: 0
     right: 0
     @include flex($j: flex-start, $a: center,$d: column)
-    .empty
-      margin-top: auto
-      margin-bottom: auto
     .cartItem
       width: 95%
       justify-content: space-between
-      .image
-        align-self: flex-start
-    
+  .ordersPage
+    flex-wrap: wrap
+    .ordersContainer
+      flex-basis: 100%
+      margin: 20px auto
+      .orderItem
+        .details
+          flex-wrap: wrap

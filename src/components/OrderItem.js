@@ -7,7 +7,7 @@ import {CartContext} from "../CartContext";
 
 function OrderItem(props) {
     const {updateCount} = useContext(CartContext);
-    const {name, price,image,id, mrp,count} = props.ob;
+    const {name, price,image,id,count} = props.ob;
     console.log(props);
     return (
         <Fade big cascade>
