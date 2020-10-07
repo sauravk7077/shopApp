@@ -55,7 +55,7 @@ class CartContextProvider extends React.Component{
               cart: cartNew
             }, this.updateLocalStorage);
           }
-
+          
     }
     clearCart = _=>{
         this.setState({cart: []});

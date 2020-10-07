@@ -16,7 +16,6 @@ function Home() {
                 <Item id="dil8" name="Bluetooth Speaker" price={400} mrp={700} image="bSpeaker.jpg"/>
                 <Item id="drl7" name="Koda Camera" price={500} mrp={800} image="cam.jpg"/>
                 
-                
             </div>
             </Fade>
         </section>

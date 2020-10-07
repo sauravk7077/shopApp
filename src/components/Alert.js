@@ -2,16 +2,16 @@ import React from "react";
 import Button from "./Button";
 import Fade from "react-reveal/Fade";
 
-function CheckOut(props) {
+function Alert(props) {
     return (
-        <div className={`checkOut ${props.className}`}>
+        <div className={`alert ${props.className}`}>
             <Fade when={!props.className}>
-                <h3>Success!</h3>
-                <p>You have sucessfully bought the items.</p>
+                <h3>{props.title}</h3>
+                <p>{props.description}</p>
                 <Button value="OK" click={props.click}/>
             </Fade>
         </div>
     )
 }
 
-export default CheckOut;
+export default Alert;

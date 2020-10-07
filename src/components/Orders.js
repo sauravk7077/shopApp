@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {CartContext} from "../CartContext";
 import OrderItem from "./OrderItem";
-import CheckOut from "./CheckOut";
+import Alert from "./Alert";
 import Button from "./Button";
 
 function Orders() {
@@ -31,7 +31,12 @@ function Orders() {
                     
                 </div>
                 </div>
-                <CheckOut className={!showCheckOut ? 'hidden': ''} click={_=>{toggleShow();clearCart()}}/>
+                <Alert
+                 title="success"
+                 className={!showCheckOut ? 'hidden': ''}
+                 click={_=>{toggleShow();clearCart()}}
+                 description="You have sucessfully bought the items."
+                />
             </>;
             
     }else{
