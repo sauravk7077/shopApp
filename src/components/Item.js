@@ -3,15 +3,13 @@ import Alert from "./Alert";
 import Fade from "react-reveal/Fade";
 import Button from "./Button";
 import {CartContext} from "../CartContext";
+import {AlertContext} from "../AlertContext";
 
 function Item(props) {
     const cartContext = useContext(CartContext);
+    const alertContext = useContext(AlertContext);
     const {name, price,image,id, mrp} = props;
     const currentItem = cartContext.findItem(cartContext.cart,id);
-    const [show, setShow] = useState(false);
-    const toggleShow = ()=>{
-        setShow(!show);
-    }
     return (
         <Fade big>
             <div className="item">
@@ -26,13 +24,12 @@ function Item(props) {
                             <p> (MRP - {mrp + "$"}) </p>
                         </span>
                     </div>
-                    <Button value={currentItem ? "Add More" : 'Add To Cart'} click={_=>{cartContext.addToCart(props); toggleShow();}}/>
-                    <Alert
-                        title="Success"
-                        className={!show ? 'hidden': ''}
-                        click={toggleShow}
-                        description="You have sucessfully added the items to the cart."
-                    />
+                    <Button value={currentItem ? "Add More" : 'Add To Cart'} 
+                      click={e=>{
+                          cartContext.addToCart(props);
+                          alertContext.setDetails("Success", `You have successfully added ${name} to your cart`)
+                          alertContext.toggleAlert();
+                        }}/>
                 </div>
             </div>
         </Fade>

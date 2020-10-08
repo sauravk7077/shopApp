@@ -75,17 +75,17 @@ header
   color: $bg
 
 .items-container
+  z-index: 1
   height: 100%
   @include flex(center, center, $wrap: wrap)
   
 
 .item
-  @include flex(center, center)
+  @include flex($a:center, $d: column)
   width: 250px
   margin: 20px
   box-sizing: border-box
   padding: 10px
-  flex-direction: column
   box-shadow: 0 0 10px darken($bg, 20%)
   .image
     width: 200px
@@ -191,8 +191,13 @@ header
   .cartItem
     @include flex($j: space-between, $a: center)
     margin: 5px
+    min-width: 350px
+
+    div:nth-child(2)
+      flex-basis: 250px
+    
     .image
-      width: 100px
+      flex-basis: 100px
       height: 100px
       img
         width: 100%
@@ -206,7 +211,7 @@ header
   
 
 .incrementBox
-  @include flex($j:space-evenly,$a:center)
+  @include flex($j:flex-end,$a:center)
 
 .close
   position: absolute
@@ -296,12 +301,19 @@ h1,h2,h3,h4,h5,h6
   ------------------
   */
 
+.modal
+  position: absolute;
+  width: 100%;
+  height: 100%
+  background: transparent
+  z-index: 999
+
 .alert
-  position: absolute
+  position: fixed
   @include flex($a: center, $d:column)
   background: $bg
-  width: 500px;
-  height: 250px;
+  width: 500px
+  height: 250px
   box-shadow: 0 0 5px darken($bg, 20%)
   top: calc(50vh - 125px)
   left: calc(50vw - 250px)
